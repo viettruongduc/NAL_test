@@ -11,7 +11,6 @@ function* getBlogList(action: PayloadAction<any>) {
       action.payload,
       ''
     )
-    console.log('search', action.payload.search)
     const totalBlog: ResponseGenerator = yield call(
       axiosService.getAll,
       null,

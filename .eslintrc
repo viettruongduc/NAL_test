@@ -29,14 +29,6 @@
         ]
       }
     ],
-    "no-unused-vars": [
-      "error",
-      {
-        "vars": "all",
-        "args": "after-used",
-        "ignoreRestSiblings": false
-      }
-    ],
     "no-var": "error",
     "no-console": "warn",
     "brace-style": "error",

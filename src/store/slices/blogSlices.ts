@@ -44,6 +44,20 @@ const blog = createSlice({
         ...state,
         totalBlog: action.payload
       }
+    },
+    setLoading: (state, action) => {
+      return {
+        ...state,
+        ...action.payload
+      }
+    },
+    setGrabData: (state, action) => {
+      return {
+        ...state,
+        loading: false,
+        data: [...state?.data, ...action.payload.data],
+        currentPage: state.currentPage + 1
+      }
     }
   }
 })

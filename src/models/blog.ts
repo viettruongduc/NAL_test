@@ -3,7 +3,7 @@ export class MBlogModal {
   search: string = ''
   sortBy: string = 'id'
   order: string = 'asc'
-  limit: number = 10
+  // limit: number = 10
 
   constructor(data?: MBlogModal) {
     Object.assign(this, data)
