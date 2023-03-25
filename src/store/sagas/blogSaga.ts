@@ -11,19 +11,42 @@ function* getBlogList(action: PayloadAction<any>) {
       action.payload,
       ''
     )
-    const totalBlog: ResponseGenerator = yield call(
-      axiosService.getAll,
-      null,
-      // action.payload.search,
-      ''
-    )
     yield put(blogActions.getBlogListSuccess(response))
-    yield put(blogActions.setTotalBlog(totalBlog?.data?.length))
   } catch (error) {
     yield put(blogActions.getBlogListFailed())
   }
 }
 
+function* createBlog(action: PayloadAction<any>) {
+  try {
+    const response: ResponseGenerator = yield call(
+      axiosService.post,
+      action.payload,
+      ''
+    )
+    yield put(blogActions.createBlogSuccess(response))
+  } catch (error) {
+    console.log(error)
+    yield put(blogActions.createBlogFailed())
+  }
+}
+
+function* deleteBlog(action: PayloadAction<any>) {
+  try {
+    const response: ResponseGenerator = yield call(
+      axiosService.delete,
+      action.payload.id,
+      ''
+    )
+    yield put(blogActions.deleteBlogSuccess(response))
+  } catch (error) {
+    console.log(error)
+    yield put(blogActions.deleteBlogFailed())
+  }
+}
+
 export default function* blogSaga() {
   yield takeLatest(blogActions.getBlogList, getBlogList)
+  yield takeLatest(blogActions.createBlog, createBlog)
+  yield takeLatest(blogActions.deleteBlog, deleteBlog)
 }

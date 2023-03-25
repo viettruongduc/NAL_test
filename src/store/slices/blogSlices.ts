@@ -3,18 +3,18 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export type initialStateType = {
   blogList: any
-  totalBlog: number
   blogFilter: MBlogModal
-  offset: number
-  itemsPerPage: number
+  pageSize: number
+  modalIdName: string
+  isShowCreateModal: boolean
 }
 
 const initialState: initialStateType = {
   blogList: null,
-  totalBlog: 0,
-  offset: 0,
-  itemsPerPage: 10,
-  blogFilter: new MBlogModal()
+  pageSize: 10,
+  blogFilter: new MBlogModal(),
+  modalIdName: '',
+  isShowCreateModal: false
 }
 
 const blog = createSlice({
@@ -39,24 +39,47 @@ const blog = createSlice({
         ...state
       }
     },
-    setTotalBlog: (state, action) => {
+    createBlog: (state, action) => {
       return {
-        ...state,
-        totalBlog: action.payload
+        ...state
       }
     },
-    setLoading: (state, action) => {
+    createBlogSuccess: (state, action) => {
       return {
-        ...state,
-        ...action.payload
+        ...state
       }
     },
-    setGrabData: (state, action) => {
+    createBlogFailed: (state) => {
+      return {
+        ...state
+      }
+    },
+    deleteBlog: (state, action) => {
+      return {
+        ...state
+      }
+    },
+    deleteBlogSuccess: (state, action) => {
+      return {
+        ...state
+      }
+    },
+    deleteBlogFailed: (state) => {
+      return {
+        ...state
+      }
+    },
+    setModalId: (state, action) => {
       return {
         ...state,
-        loading: false,
-        data: [...state?.data, ...action.payload.data],
-        currentPage: state.currentPage + 1
+        modalIdName: action.payload
+      }
+    },
+    setIsShowCreateModal: (state, action) => {
+      console.log(action.payload)
+      return {
+        ...state,
+        isShowCreateModal: action.payload.isShowCreateModal
       }
     }
   }

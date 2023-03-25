@@ -18,7 +18,6 @@ const Blog: React.FC<Props> = ({ title, image, content }) => {
       />
       <div className="media-body">
         <h4 className="mt-0 font-weight-bold">{title}</h4>
-        <p className="mb-0">{content}</p>
       </div>
     </div>
   )
