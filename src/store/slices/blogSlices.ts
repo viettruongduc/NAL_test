@@ -69,14 +69,7 @@ const blog = createSlice({
         ...state
       }
     },
-    setModalId: (state, action) => {
-      return {
-        ...state,
-        modalIdName: action.payload
-      }
-    },
     setIsShowCreateModal: (state, action) => {
-      console.log(action.payload)
       return {
         ...state,
         isShowCreateModal: action.payload.isShowCreateModal

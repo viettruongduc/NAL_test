@@ -26,7 +26,6 @@ function* createBlog(action: PayloadAction<any>) {
     )
     yield put(blogActions.createBlogSuccess(response))
   } catch (error) {
-    console.log(error)
     yield put(blogActions.createBlogFailed())
   }
 }
@@ -40,7 +39,6 @@ function* deleteBlog(action: PayloadAction<any>) {
     )
     yield put(blogActions.deleteBlogSuccess(response))
   } catch (error) {
-    console.log(error)
     yield put(blogActions.deleteBlogFailed())
   }
 }

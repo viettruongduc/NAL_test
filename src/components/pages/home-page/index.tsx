@@ -1,11 +1,14 @@
-import BlogList from '../../organisms/blog-list'
-import BaseInput from '../../atoms/base-input'
-import useHomePage from './useHomePage'
-import BaseButton from '../../atoms/base-button'
-import BaseModal from '../../molecules/base-modal/index'
 import { useForm } from 'react-hook-form'
+import Alert from 'react-bootstrap/Alert'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+
+import BaseButton from '../../atoms/base-button'
+import BaseInput from '../../atoms/base-input'
+import BlogList from '../../organisms/blog-list'
+import BaseModal from '../../molecules/base-modal/index'
+
+import useHomePage from './useHomePage'
 import './style.css'
 
 const CreateSchema = yup.object().shape({
@@ -27,7 +30,8 @@ const HomePage = () => {
     register,
     handleSubmit,
     formState: { errors },
-    clearErrors
+    clearErrors,
+    reset
   } = useForm<FormData>({
     resolver: yupResolver(CreateSchema)
   })
@@ -38,11 +42,19 @@ const HomePage = () => {
     onSaveBlog,
     modalIdName,
     onCloseModal,
-    isShowCreateModal
-  } = useHomePage(clearErrors)
+    isShowCreateModal,
+    isShowBadge
+  } = useHomePage(clearErrors, reset)
 
   return (
     <div className="container mt-5">
+      <div className="row">
+        <div className="col-sm-4">
+          <Alert key="success" variant="success" show={isShowBadge}>
+            Create blog successful
+          </Alert>
+        </div>
+      </div>
       <div className="row justify-content-between">
         <div className="col-sm-4">
           <BaseInput
@@ -64,7 +76,7 @@ const HomePage = () => {
         <BaseModal
           title="Create A Blog"
           onCloseModal={onCloseModal}
-          showModalClassName="show-modal"
+          show={isShowCreateModal}
         >
           <form onSubmit={handleSubmit(onSaveBlog)}>
             <div>
@@ -84,7 +96,8 @@ const HomePage = () => {
                 <p className="validate-input">{errors.content?.message}</p>
               )}
             </div>
-            <input type="submit" />
+            <input type="submit" value="Submit" />
+            <input type="button" value="Cancel" onClick={onCloseModal}></input>
           </form>
         </BaseModal>
       )}

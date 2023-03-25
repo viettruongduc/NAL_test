@@ -1,7 +1,7 @@
 interface Props {
   onClick: (event: any) => void
-  dataTarget: string
-  buttonName: string
+  dataTarget?: string
+  buttonName?: string
 }
 
 const BaseButton: React.FC<Props> = ({ onClick, dataTarget, buttonName }) => {

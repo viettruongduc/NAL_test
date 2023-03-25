@@ -1,11 +1,13 @@
+import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks/index'
 import { blogActions } from '../../../store/slices/blogSlices'
 
-const useHomePage = (clearErrors: () => void) => {
+const useHomePage = (clearErrors: () => void, reset: () => void) => {
   const dispatch = useAppDispatch()
   const { isShowCreateModal, modalIdName } = useAppSelector(
     (state) => state.blogList
   )
+  const [isShowBadge, setIsShowBadge] = useState(false)
 
   const onHandleSearch = (event: any) => {
     dispatch(blogActions.getBlogList({ search: event.target.value }))
@@ -13,14 +15,9 @@ const useHomePage = (clearErrors: () => void) => {
 
   const onCreateBlog = () => {
     dispatch(blogActions.setIsShowCreateModal({ isShowCreateModal: true }))
-    dispatch(blogActions.setModalId('#createModal'))
-    // dispatch(blogActions.createBlog({ title: '125' }))
-    // for (let i = 100; i < 150; i++) dispatch(blogActions.deleteBlog({ id: i }))
   }
 
   const onSaveBlog = (data: any) => {
-    // console.log(7879989)
-
     data &&
       dispatch(
         blogActions.createBlog({
@@ -29,9 +26,15 @@ const useHomePage = (clearErrors: () => void) => {
         })
       )
     dispatch(blogActions.setIsShowCreateModal({ isShowCreateModal: false }))
+    setIsShowBadge(true)
+    setTimeout(() => {
+      setIsShowBadge(false)
+    }, 1500)
+    reset()
   }
 
   const onCloseModal = () => {
+    dispatch(blogActions.setIsShowCreateModal({ isShowCreateModal: false }))
     clearErrors()
   }
 
@@ -41,7 +44,8 @@ const useHomePage = (clearErrors: () => void) => {
     onSaveBlog,
     onCloseModal,
     modalIdName,
-    isShowCreateModal
+    isShowCreateModal,
+    isShowBadge
   }
 }
 

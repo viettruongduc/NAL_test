@@ -3,12 +3,11 @@ import React from 'react'
 interface Props {
   title: string
   image: string
-  content: string
 }
 
-const Blog: React.FC<Props> = ({ title, image, content }) => {
+const Blog: React.FC<Props> = ({ title, image }) => {
   return (
-    <div className="media mt-5">
+    <div className="media mt-5 w-100">
       <img
         src={image}
         className="align-self-center mr-3"

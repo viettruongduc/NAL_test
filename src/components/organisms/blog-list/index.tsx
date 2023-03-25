@@ -37,37 +37,16 @@ const ListBlog = () => {
     <div className="container">
       <div className="row">
         {blogList?.length > 10 ? (
-          <InfiniteScroll
-            pageStart={0}
-            loadMore={loadMoreItems}
-            hasMore={true}
-            loader={
-              <div className="loader" key={0}>
-                Loading ...
-              </div>
-            }
-          >
+          <InfiniteScroll pageStart={0} loadMore={loadMoreItems} hasMore={true}>
             {blogs?.map((blog: any) => {
               return (
-                <Blog
-                  key={blog.id}
-                  title={blog.title}
-                  image={blog.image}
-                  content={blog.content}
-                />
+                <Blog key={blog.id} title={blog.title} image={blog.image} />
               )
             })}
           </InfiniteScroll>
         ) : (
           blogs?.map((blog: any) => {
-            return (
-              <Blog
-                key={blog.id}
-                title={blog.title}
-                image={blog.image}
-                content={blog.content}
-              />
-            )
+            return <Blog key={blog.id} title={blog.title} image={blog.image} />
           })
         )}
       </div>
