@@ -1,18 +1,12 @@
 interface Props {
   onClick: (event: any) => void
-  dataTarget?: string
-  buttonName?: string
+  buttonName: string
+  className: string
 }
 
-const BaseButton: React.FC<Props> = ({ onClick, dataTarget, buttonName }) => {
+const BaseButton: React.FC<Props> = ({ onClick, buttonName, className }) => {
   return (
-    <button
-      type="button"
-      className="btn btn-primary"
-      onClick={onClick}
-      data-toggle="modal"
-      data-target={dataTarget}
-    >
+    <button type="button" className={className} onClick={onClick}>
       {buttonName}
     </button>
   )

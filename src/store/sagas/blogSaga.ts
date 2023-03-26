@@ -17,6 +17,19 @@ function* getBlogList(action: PayloadAction<any>) {
   }
 }
 
+function* getBlogById(action: PayloadAction<any>) {
+  try {
+    const response: ResponseGenerator = yield call(
+      axiosService.getById,
+      action.payload.idBlog,
+      ''
+    )
+    yield put(blogActions.getBlogByIdSuccess(response?.data))
+  } catch (error) {
+    yield put(blogActions.getBlogByIdFailed())
+  }
+}
+
 function* createBlog(action: PayloadAction<any>) {
   try {
     const response: ResponseGenerator = yield call(
@@ -45,6 +58,7 @@ function* deleteBlog(action: PayloadAction<any>) {
 
 export default function* blogSaga() {
   yield takeLatest(blogActions.getBlogList, getBlogList)
+  yield takeLatest(blogActions.getBlogById, getBlogById)
   yield takeLatest(blogActions.createBlog, createBlog)
   yield takeLatest(blogActions.deleteBlog, deleteBlog)
 }

@@ -1,11 +1,19 @@
-import './App.css'
+import React, { Fragment } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import HomePage from './components/pages/home-page'
+import BlogDetail from './components/pages/blog-detail'
+import './App.css'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <HomePage />
-    </div>
+    <Router>
+      <Fragment>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/:blogPath" element={<BlogDetail />} />
+        </Routes>
+      </Fragment>
+    </Router>
   )
 }
 

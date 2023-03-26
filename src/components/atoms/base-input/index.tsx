@@ -1,16 +1,22 @@
 interface Props {
-  onHandleSearch?: (event: any) => void
   type: string
+  onChange?: (event: any) => void
   placeholder?: string
+  className?: string
 }
 
-const BaseInput: React.FC<Props> = ({ onHandleSearch, type, placeholder }) => {
+const BaseInput: React.FC<Props> = ({
+  type,
+  onChange,
+  placeholder,
+  className
+}) => {
   return (
     <input
       type={type}
       placeholder={placeholder}
-      className="form-control"
-      onChange={onHandleSearch}
+      className={className}
+      onChange={onChange}
     />
   )
 }

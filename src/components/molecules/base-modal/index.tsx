@@ -3,24 +3,21 @@ import { Modal } from 'react-bootstrap'
 
 interface Props {
   children: ReactElement
-  title: string
-  onCloseModal: () => void
+  title?: string
+  onHide: () => void
   show: boolean
 }
 
-const BaseModal: React.FC<Props> = ({
-  title,
-  children,
-  onCloseModal,
-  show
-}) => {
+const BaseModal: React.FC<Props> = ({ title, children, onHide, show }) => {
   return (
-    <Modal show={show} onHide={onCloseModal}>
-      <Modal.Header>
-        <Modal.Title>{title}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>{children}</Modal.Body>
-    </Modal>
+    <div>
+      <Modal show={show} onHide={onHide} className="custom-modal">
+        <Modal.Header>
+          <Modal.Title>{title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{children}</Modal.Body>
+      </Modal>
+    </div>
   )
 }
 

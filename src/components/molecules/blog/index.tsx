@@ -1,11 +1,17 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 
 interface Props {
   title: string
   image: string
+  content: string
+  id: number
 }
 
-const Blog: React.FC<Props> = ({ title, image }) => {
+const createMarkup = (data: any) => {
+  return { __html: data }
+}
+
+const Blog: React.FC<Props> = ({ title, image, content, id }) => {
   return (
     <div className="media mt-5 w-100">
       <img
@@ -16,7 +22,10 @@ const Blog: React.FC<Props> = ({ title, image }) => {
         height={180}
       />
       <div className="media-body">
-        <h4 className="mt-0 font-weight-bold">{title}</h4>
+        <Link to={`/${id}`} className="mt-0 font-weight-bold title-blog">
+          {title}
+        </Link>
+        <div dangerouslySetInnerHTML={createMarkup(content.substring(0, 30))} />
       </div>
     </div>
   )

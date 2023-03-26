@@ -1,0 +1,17 @@
+.modal-content {
+  width: 150%;
+  margin-left: -116px;
+  height: 76vh;
+}
+
+.title-field, .content-field {
+  height: 20px;
+}
+
+.ck.ck-editor__editable_inline {
+  height: 150px;
+}
+
+.button-wrapper {
+  position: sticky;
+}

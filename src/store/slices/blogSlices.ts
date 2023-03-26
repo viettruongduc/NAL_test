@@ -1,20 +1,22 @@
-import { MBlogModal } from '../../models/blog'
+import { MBlogFilter, MBlogModel } from '../../models/blog'
 import { createSlice } from '@reduxjs/toolkit'
 
 export type initialStateType = {
   blogList: any
-  blogFilter: MBlogModal
+  blogFilter: MBlogFilter
   pageSize: number
-  modalIdName: string
   isShowCreateModal: boolean
+  isShowBadge: boolean
+  blogDetail: MBlogModel
 }
 
 const initialState: initialStateType = {
   blogList: null,
   pageSize: 10,
-  blogFilter: new MBlogModal(),
-  modalIdName: '',
-  isShowCreateModal: false
+  blogFilter: new MBlogFilter(),
+  isShowCreateModal: false,
+  isShowBadge: false,
+  blogDetail: new MBlogModel()
 }
 
 const blog = createSlice({
@@ -54,6 +56,22 @@ const blog = createSlice({
         ...state
       }
     },
+    getBlogById: (state, action) => {
+      return {
+        ...state
+      }
+    },
+    getBlogByIdSuccess: (state, action) => {
+      return {
+        ...state,
+        blogDetail: action.payload
+      }
+    },
+    getBlogByIdFailed: (state) => {
+      return {
+        ...state
+      }
+    },
     deleteBlog: (state, action) => {
       return {
         ...state
@@ -72,7 +90,13 @@ const blog = createSlice({
     setIsShowCreateModal: (state, action) => {
       return {
         ...state,
-        isShowCreateModal: action.payload.isShowCreateModal
+        isShowCreateModal: action.payload
+      }
+    },
+    setIsShowBadge: (state, action) => {
+      return {
+        ...state,
+        isShowBadge: action.payload
       }
     }
   }
