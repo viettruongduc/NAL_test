@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/viettruongduc/static/css/main.50f73f1d.css",
+    "main.js": "/viettruongduc/static/js/main.54a6c4fe.js",
+    "static/js/787.28cb0dcd.chunk.js": "/viettruongduc/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/viettruongduc/index.html",
+    "main.50f73f1d.css.map": "/viettruongduc/static/css/main.50f73f1d.css.map",
+    "main.54a6c4fe.js.map": "/viettruongduc/static/js/main.54a6c4fe.js.map",
+    "787.28cb0dcd.chunk.js.map": "/viettruongduc/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.50f73f1d.css",
+    "static/js/main.54a6c4fe.js"
+  ]
+}
